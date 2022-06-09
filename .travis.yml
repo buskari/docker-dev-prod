@@ -1,0 +1,10 @@
+sudo: required
+language: generic
+services:
+  - docker
+  
+before_install:
+  - docker build -t buskari/docker-dev-prod -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true buskari/docker-dev-prod npm run test
